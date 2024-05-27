@@ -46,6 +46,7 @@ export async function POST(request: Request) {
       await newUser.save();
     }
     const emailRes = await sendVerificationEmail(username, email, verifyCode);
+    console.log("Email logs are: ",emailRes);
     if (!emailRes.success) {
       return Response.json(
         {
