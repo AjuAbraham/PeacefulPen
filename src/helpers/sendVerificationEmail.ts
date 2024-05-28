@@ -6,7 +6,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 export async function sendVerificationEmail(email:string,username:string,verificationCode:string):Promise<ApiResponse> {
     try {
         await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from:'Acme <onboarding@resend.dev>',
             to: email,
             subject: 'Verify to FeedBacker',
             react: VerificationEmail({username,otp:verificationCode}),

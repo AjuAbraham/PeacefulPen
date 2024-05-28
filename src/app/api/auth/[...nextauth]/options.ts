@@ -10,14 +10,14 @@ export const nextAuthOptions:NextAuthOptions ={
             id:"credentials",
             name:"Credentials",
             credentials:{
-                email: { label: "email", type: "text", placeholder: "email" },
+                email: { label: "email", type: "email", placeholder: "email" },
                 password: { label: "Password", type: "password" }  
             },
             async authorize(credentials:any): Promise<any>{
                 await dbConnect();
                 try {
                     const user = await UserModel.findOne({
-                        $or:[{username:credentials.identifier.username},{email:credentials.identifier.email}]
+                        email:credentials.email
                     })
                     if(!user){
                         throw new Error("User don't exsist");

@@ -28,11 +28,11 @@ const VerifyCode = () => {
     
     const onSubmit = async(data:z.infer<typeof verifySchema> )=>{
         try {
-            const res = await axios.post(`/api/verify-code`,{
+            const res = await axios.post('/api/verify-code',{
                 username:params.username,
                 code: data.code
             })
-
+            console.log("res is: ",res);
             toast({
                 title: res.data.success=== true? "Success": "Failed",
                 description: res.data.message
